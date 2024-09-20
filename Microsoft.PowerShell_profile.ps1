@@ -592,7 +592,9 @@ function restart-shell {
     Stop-Process -Id $PID  # Terminate the current session
 }
 
-Set-Alias --Name restart -Value restart-shell -Option AllScope -Scope Global -Force
+# Set an alias for the restart-shell function
+Set-Alias -Name restart -Value restart-shell
+
 # Check if the 'zoxide' command is available
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     # If 'zoxide' is found, initialize it with the command to change directory to PowerShell
