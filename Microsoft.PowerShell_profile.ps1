@@ -602,7 +602,7 @@ function restart-shell {
 }
 
 
-Set-Alias -Name restart -Value restart-shell
+Set-Alias -Name reshell -Value restart-shell
 
 # Check if the 'zoxide' command is available
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
@@ -662,8 +662,9 @@ function Show-Help {
     Write-Host "  dps               - List containers managed by docker-compose"
     Write-Host "  dce               - Execute a command in a running container"
     Write-Host "  dcp               - Pull service images defined in docker-compose"
-    Write-Host "  restart           - Restart the PowerShell shell"
+    Write-Host "  reshell           - Restart the PowerShell shell"
 }
+
 
 # Display a message to the user when the profile is loaded
 Write-Host "Use 'Show-Help' to display help"
