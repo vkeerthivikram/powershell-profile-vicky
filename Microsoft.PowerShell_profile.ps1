@@ -213,19 +213,25 @@ Set-Alias -Name pubip -Value Get-PubIP  # Create an alias 'pubip' that points to
 
 # Function to launch a new Windows Terminal instance with administrative privileges
 function admin {
+    # Determine the executable based on the current PowerShell edition
+    if ($PSEdition -eq "Core") {
+        $exePath = "$PSHOME\pwsh.exe"
+    } else {
+        $exePath = "$PSHOME\powershell.exe"
+    }
+
     # Check if any arguments were passed to the function
     if ($args.Count -gt 0) {
         # Construct the command string with the provided arguments
         $argList = "& '$args'"
         
         # Start a new Windows Terminal process as an administrator, executing the specified command
-        Start-Process wt -Verb runAs -ArgumentList "pwsh.exe -NoExit -Command $argList"
+        Start-Process wt -Verb runAs -ArgumentList "$exePath -NoExit -Command $argList"
     } else {
         # Start a new Windows Terminal process as an administrator without any specific command
-        Start-Process wt -Verb runAs
+        Start-Process wt -Verb runAs -ArgumentList "$exePath -NoExit"
     }
 }
-
 # Create an alias 'su' that points to the 'admin' function
 Set-Alias -Name su -Value admin  # Set the alias 'su' to call the 'admin' function for launching Windows Terminal as an administrator
 
