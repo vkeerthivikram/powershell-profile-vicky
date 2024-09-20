@@ -510,6 +510,77 @@ function Get-Theme {
 
 Get-Theme # Apply the theme to the PowerShell prompt
 
+# Function to run docker-compose up in the current directory
+function dcu {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose up @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
+
+# Function to run docker-compose down in the current directory
+function dcd {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose down @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
+
+# Function to run docker-compose build in the current directory
+function dcb {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose build @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
+
+# Function to run docker-compose logs in the current directory
+function dcl {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose logs @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
+
+# Function to run docker-compose restart in the current directory
+function dcr {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose restart @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
+
+# Function to run docker-compose ps in the current directory
+function dps {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose ps @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
+
+# Function to run docker-compose exec in the current directory
+function dce {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose exec @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
+
+# Function to run docker-compose pull in the current directory
+function dcp {
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        docker-compose pull @args  # Pass any additional arguments to docker-compose
+    } else {
+        Write-Host "docker-compose is not installed. Please install Docker Compose." -ForegroundColor Red
+    }
+}
 
 # Check if the 'zoxide' command is available
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
@@ -561,6 +632,14 @@ function Show-Help {
     Write-Host "  sysinfo           - Display system information"
     Write-Host "  flushdns          - Clear the DNS client cache"
     Write-Host "  cpy, pst          - Copy to and paste from clipboard"
+    Write-Host "  dcu               - Run docker-compose up in the current directory"
+    Write-Host "  dcd               - Run docker-compose down in the current directory"
+    Write-Host "  dcb               - Run docker-compose build in the current directory"
+    Write-Host "  dcl               - Run docker-compose logs in the current directory"
+    Write-Host "  dcr               - Run docker-compose restart in the current directory"
+    Write-Host "  dps               - List containers managed by docker-compose"
+    Write-Host "  dce               - Execute a command in a running container"
+    Write-Host "  dcp               - Pull service images defined in docker-compose"
 }
 
 # Display a message to the user when the profile is loaded
