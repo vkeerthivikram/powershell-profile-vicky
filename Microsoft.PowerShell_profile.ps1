@@ -582,6 +582,17 @@ function dcp {
     }
 }
 
+# Function to restart the PowerShell shell
+function restart-shell {
+    # Inform the user that the shell is restarting
+    Write-Host "Restarting PowerShell shell..." -ForegroundColor Yellow
+    
+    # Close the current shell and start a new instance
+    Start-Process powershell -ArgumentList "-NoExit"  # Start a new PowerShell instance
+    Stop-Process -Id $PID  # Terminate the current session
+}
+
+Set-Alias --Name restart -Value restart-shell -Option AllScope -Scope Global -Force
 # Check if the 'zoxide' command is available
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     # If 'zoxide' is found, initialize it with the command to change directory to PowerShell
