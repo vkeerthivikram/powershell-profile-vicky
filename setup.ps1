@@ -23,8 +23,8 @@ function Test-InternetConnection {
 # Function to install Nerd Fonts on the system
 function Install-NerdFonts {
     param (
-        [string]$FontName = "JetBrainsMono",  # Default font name for JetBrains Mono
-        [string]$FontDisplayName = "JetBrains Mono"  # Display name for the font
+        [string]$FontName = "CascadiaCode",  # Default font name for Cascadia Code
+        [string]$FontDisplayName = "Cascadia Code"  # Display name for the font
     )
 
     try {
@@ -191,12 +191,14 @@ try {
     Install-PSModule -ModuleName "Terminal-Icons"
 
     # Install Nerd Fonts
-    Install-NerdFonts -FontName "JetBrainsMono" -FontDisplayName "JetBrains Mono"
+    Install-NerdFonts -FontName "CascadiaCode" -FontDisplayName "Cascadia Code"
 
     # Final check
-    if ((Test-Path -Path $PROFILE) -and (winget list --id "JanDeDobbeleer.OhMyPosh" -e) -and ($fontFamilies -contains "JetBrains Mono")) {
+
+    if ((Test-Path -Path $PROFILE) -and (winget list --id "JanDeDobbeleer.OhMyPosh" -e) -and ($fontFamilies -contains "Cascadia Code")) {
         Write-Host "Setup completed successfully. Please restart your PowerShell session to apply changes."
     } else {
+
         Write-Warning "Setup completed with some issues. Please check the messages above for details."
     }
 } catch {
