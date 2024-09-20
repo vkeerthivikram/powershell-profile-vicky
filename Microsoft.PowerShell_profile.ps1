@@ -610,6 +610,32 @@ function restart-shell {
 
 Set-Alias -Name reshell -Value restart-shell
 
+# Function to update all packages using winget
+function winget-update-all {
+    winget update --all  # Update all installed packages
+}
+
+# Function to update a specific package using winget
+function winget-update {
+    param(
+        [string]$packageName  # Name of the package to update
+    )
+    winget update $packageName  # Update the specified package
+}
+
+# Function to install a specific package using winget
+function winget-install {
+    param(
+        [string]$packageName  # Name of the package to install
+    )
+    winget install $packageName  # Install the specified package
+}
+
+# Create aliases for the functions
+Set-Alias -Name wua -Value winget-update-all  # Alias for updating all packages
+Set-Alias -Name wu -Value winget-update  # Alias for updating a specific package
+Set-Alias -Name wi -Value winget-install  # Alias for installing a specific package
+
 # Check if the 'zoxide' command is available
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     # If 'zoxide' is found, initialize it with the command to change directory to PowerShell
@@ -635,6 +661,7 @@ Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 
 
+# Add a Show-Help function
 # Add a Show-Help function
 function Show-Help {
     Write-Host "Available custom commands:"
@@ -669,6 +696,9 @@ function Show-Help {
     Write-Host "  dce               - Execute a command in a running container"
     Write-Host "  dcp               - Pull service images defined in docker-compose"
     Write-Host "  reshell           - Restart the PowerShell shell"
+    Write-Host "  wua               - Update all installed packages using winget"
+    Write-Host "  wu                - Update a specific package using winget"
+    Write-Host "  wi                - Install a specific package using winget"
 }
 
 
